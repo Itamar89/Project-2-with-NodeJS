@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router()//Creat the router object witch activat handel http request 
-usersWbService = require("../Services/usersWbService");
+usersWbService = require("../Services/usersWbAndDBService");
 const jwt = require("jsonwebtoken")
 
 
@@ -20,7 +20,7 @@ router.post("/login", async (req, res) => {
 
         //else
         const token = jwt.sign({ id: user.id }, "secret")//why without the id it wasent work?
-        return res.json({ success: true, token: token, message: "Login seccessful, Welcome" })
+        return res.json({ success: true, token: token, message: "Login seccessful, Welcome", name: user.fullName })
     } catch (e) {
         return res.json({ success: false, message: e.message })
     }
