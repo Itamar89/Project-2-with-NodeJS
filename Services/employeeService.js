@@ -23,7 +23,7 @@ const updateEmployee = async (_id, newData) => {//{id: "66608f0a404bef51218fb59f
 //POST-creat
 async function creatNewEmployee(newEmployee) {
     const employye = new employeeModel(newEmployee)
-    await NewEmployye.save()
+    await newEmployee.save()
     return "New Employee Creat Successfully"
 
 }

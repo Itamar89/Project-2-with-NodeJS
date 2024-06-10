@@ -10,7 +10,8 @@ require("./configs/connectDB")
 const authController = require("./Controllers/authController")
 app.use("/auth", authController)
 
-
+const employeeController = require("./Controllers/EmployeesController")
+app.use("/Employees", employeeController)
 
 
 

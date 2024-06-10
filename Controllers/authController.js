@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router()//Creat the router object witch activat handel http request 
-usersWbService = require("../Services/usersWbAndDBService");
+usersWbService = require("../Services/usersWbAndDBService");//require usersService file
 const jwt = require("jsonwebtoken")
 
 
@@ -29,5 +29,6 @@ router.post("/login", async (req, res) => {
 
 
 //Don't forget- need to be also LOGOUT router
+// didn't do user actions limitation yet
 
 module.exports = router
