@@ -19,14 +19,15 @@ router.post("/login", async (req, res) => {
         if (!user) return res.json({ success: false, message: "Invalid username or email, try again" })
 
         //else
-        const token = jwt.sign({ id: user.id }, "secret")//why without the id it wasent work?
+        const token = jwt.sign({ id: user.id }, "secret", {})//why without the id it wasent work?
         return res.json({ success: true, token: token, message: "Login seccessful, Welcome", name: user.fullName })
     } catch (e) {
         return res.json({ success: false, message: e.message })
     }
 
-    //לא לשכוח שכנתראה צריך להיות גם "לוגאוט" כאן
-
 });
+
+
+//Don't forget- need to be also LOGOUT router
 
 module.exports = router
