@@ -6,5 +6,6 @@ const getAllUsers = () => {
     return axios.get(usersWbUrl)
 
 }
+
 module.exports = { getAllUsers }
 

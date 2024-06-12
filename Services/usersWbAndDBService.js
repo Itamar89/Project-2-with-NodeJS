@@ -4,7 +4,7 @@ const userModel = require("../Models/usersModel")
 //GET ALL
 const getAllUsers = async () => {
     const users = await userModel.find({});
-    return users
+    return users //will brings all users from DB
 }
 
 //Get BY ID
@@ -41,15 +41,17 @@ const getUsers = async () => {
     return users //[{},{},{}.....]
 }
 
-const userAuth = async (username, email) => {
+const userLogInAuth = async (username, email) => {
     const users = await getUsers()
-    //jsonplaceholder contain array with users objects. so I need new array with objects- I made new array with object with the proprtys username,email,id [{username:"bret", email:"someEmail@", id:1}]
-    const users_username_email = users.map((user) => ({ username: user.username, email: user.email, id: user.id }))// map return the same size array
-    // console.log(users_username_email);
-    const user = users_username_email.find((user) => user.username === username && user.email === email)// the operator AND written as &&
+    //jsonplaceholder contain array with users objects. so I need new array with objects and the properts that I need- username, email, id [{username:"bret", email:"someEmail@", id:1}]
+    const users_username_email_id = users.map((user) => ({ username: user.username, email: user.email, id: user.id }))// map return the same size array
 
-    const userFromDB = await getUserById(user.id)// here i get the user from DB
-    user.fullName = userFromDB.FullName
+    const user = users_username_email_id.find((user) => user.username === username && user.email === email)// the operator AND written as &&
+
+    const userFromDB = await getUserById(user.id)// here i get THE user from DB that match to jsonflaceholder user id
+
+    user.fullName = userFromDB.FullName    //user --> [{username: "Bret", "email:somting@..", fullName:"Itamar Ben Natan"},{},{}]
+
     return user
 
 
@@ -58,5 +60,5 @@ const userAuth = async (username, email) => {
 
 module.exports = {
     getAllUsers, getUserById, updateUser,
-    creatNewUser, deleteUserFromDataBase, getUsers, userAuth
+    creatNewUser, deleteUserFromDataBase, getUsers, userLogInAuth
 }

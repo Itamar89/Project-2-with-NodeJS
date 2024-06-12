@@ -9,7 +9,7 @@ const getAllEmployees = async () => {
 
 //GET BY ID
 const getEmployeeById = async (_id) => {
-    // findbyid will only get the user with the _id of mongo db
+    // findbyid will only get the user with the _id of mongoDB
     const employee = await employeeModel.findById(_id);
     return employee
 }
@@ -22,13 +22,14 @@ const updateEmployee = async (_id, newData) => {//{id: "66608f0a404bef51218fb59f
 
 //POST-creat
 async function creatNewEmployee(newEmployee) {
-    const employye = new employeeModel(newEmployee)
-    await newEmployee.save()
+    const employee = new employeeModel(newEmployee)
+
+    await employee.save()
     return "New Employee Creat Successfully"
 
 }
 
-//Delet
+//Delete
 async function deleteEmployeeFromDataBase(_id) {
     await employeeModel.findByIdAndDelete(_id)
     return "Employee deleted"

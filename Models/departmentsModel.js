@@ -5,6 +5,6 @@ const departmentSchema = new mongoose.Schema({
     ManagerIsIdEmployee: String
 })
 
-const departmentModel = mongoose.model("user", departmentSchema);
+const departmentModel = mongoose.model("department", departmentSchema);
 
 module.exports = departmentModel
