@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router()
-const employeeService = require("../Services/employeeService");
+const employeeService = require("../Services/employeesService");
 
 
 
