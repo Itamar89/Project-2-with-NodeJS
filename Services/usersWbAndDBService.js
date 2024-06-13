@@ -28,32 +28,31 @@ const creatNewUser = async (newUser) => {
 
 }
 
-//Delete
+//DELETE
 const deleteUserFromDataBase = async (_id) => {
     await userModel.findByIdAndDelete(_id);
-    return "USER DELETED"
+    return "USER DELETED";
 }
 
 
 const getUsers = async () => {
-    const respo = await usersWbRepo.getAllUsers()// we get the all information
-    const users = respo.data// here we get the Key Data 
-    return users //[{},{},{}.....]
+    const respo = await usersWbRepo.getAllUsers();// we get the all information
+    const users = respo.data;// here we get the Key Data 
+    return users; //[{},{},{}.....]
 }
 
 const userLogInAuth = async (username, email) => {
-    const users = await getUsers()
+    const users = await getUsers();
     //jsonplaceholder contain array with users objects. so I need new array with objects and the properts that I need- username, email, id [{username:"bret", email:"someEmail@", id:1}]
-    const users_username_email_id = users.map((user) => ({ username: user.username, email: user.email, id: user.id }))// map return the same size array
+    const users_username_email_id = users.map((user) => ({ username: user.username, email: user.email, id: user.id }));// map return the same size array
 
-    const user = users_username_email_id.find((user) => user.username === username && user.email === email)// the operator AND written as &&
+    const user = users_username_email_id.find((user) => user.username === username && user.email === email);// the operator AND written as &&
 
-    const userFromDB = await getUserById(user.id)// here i get THE user from DB that match to jsonflaceholder user id
+    const userFromDB = await getUserById(user.id);// here i get THE user from DB that match to jsonflaceholder user id
 
-    user.fullName = userFromDB.FullName    //user --> [{username: "Bret", "email:somting@..", fullName:"Itamar Ben Natan"},{},{}]
+    user.fullName = userFromDB.FullName;    //user --> [{username: "Bret", "email:somting@..", fullName:"Itamar Ben Natan"},{},{}]
 
-    return user
-
+    return user;
 
 }
 
@@ -61,4 +60,4 @@ const userLogInAuth = async (username, email) => {
 module.exports = {
     getAllUsers, getUserById, updateUser,
     creatNewUser, deleteUserFromDataBase, getUsers, userLogInAuth
-}
+};

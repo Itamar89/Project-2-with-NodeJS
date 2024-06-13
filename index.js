@@ -5,12 +5,12 @@ const mongoose = require("mongoose")
 
 app.use(express.json())//This Middlewear responsible for converting the request body from JSONs to object
 
-require("./configs/connectDB")
+require("./Configs/connectDB")
 
 const authController = require("./Controllers/authController")
 app.use("/auth", authController)
 
-const employeeController = require("./Controllers/EmployeesController")
+const employeeController = require("./Controllers/employeesController")
 app.use("/employees", employeeController)
 
 
