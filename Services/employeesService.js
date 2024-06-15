@@ -15,15 +15,15 @@ const getEmployeeById = async (_id) => {
 }
 
 //PUT-Update
-const updateEmployee = async (_id, newData) => {//{id: "66608f0a404bef51218fb59f", {First Name: "Danit"}}  היא צריכה את האיי די של העובד והמידע החדש עליו כדי לעדכן אותו
-    await employeeModel.findByIdAndUpdate(_id, newData);
+const updateEmployee = async (_id, newEmployeeData) => {//{id: "66608f0a404bef51218fb59f", {First Name: "Danit"}}  היא צריכה את האיי די של העובד והמידע החדש עליו כדי לעדכן אותו
+    await employeeModel.findByIdAndUpdate(_id, newEmployeeData);
     return "Update Employee Succeed";
 }
 
 //POST-creat
 async function creatNewEmployee(newEmployee) {
     const employee = new employeeModel(newEmployee);// here I will Get a whole employee obj
-    delete employee.ShiftId;
+    delete employee.ShiftId; //delete ShiftId property
 
     await employee.save();
     return "New Employee Creat Successfully"; //Creating new employee withot shiftId proprety

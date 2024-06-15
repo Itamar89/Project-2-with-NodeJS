@@ -45,16 +45,47 @@ router.get("/", checkToken, async (req, res) => {
     } catch (e) { return res.json({ success: false, message: e.message }) }
 })
 
-//POST - CREAT EMPLOYEE
+//POST - CREAT employee
 router.post("/", checkToken, async (req, res) => {
+    try {
+        const employee = req.body;
 
-    const employee = req.body;
+        const status = await employeeService.creatNewEmployee(employee);
 
-    const status = await employeeService.creatNewEmployee(employee);
+        if (!employee) return res.json({ success: false, message: "Invalid employee, check the body data." });
 
-    if (!employee) return res.json({ success: false, message: "Invalid employee, check the body data." });
+        return res.json({ success: true, msg: status });
+    } catch (e) {
+        return res.json({ success: false, message: e.message })
+    }
 
-    return res.json({ success: true, msg: status });
-})
+});
+
+//PUT - Update employee
+router.put("/:id", checkToken, async (req, res) => {
+    try {
+        const _id = req.params.id
+        const body = req.body
+
+        const status = await employeeService.updateEmployee(_id, body)// the variable ststus contain the string message from the service file that return
+
+        if (!_id)
+            return res.json({ success: false, message: "id required!" });
+
+        if (!body)
+            return res.json({ success: false, message: "body message is required!" });
+
+        if (status === ! "Update Employee Succeed")
+            return res.json({ success: false, message: "employee not founde, check the id" })
+
+
+        return res.json({ success: true, message: status })
+
+    } catch (e) {
+        return res.json({ success: false, message: e.message })
+    }
+
+
+});
 
 module.exports = router
