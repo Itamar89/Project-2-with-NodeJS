@@ -43,7 +43,7 @@ router.get("/", checkToken, async (req, res) => {
         return res.json({ success: true, employees: employees });
 
     } catch (e) { return res.json({ success: false, message: e.message }) }
-})
+});
 
 //POST - CREAT employee
 router.post("/", checkToken, async (req, res) => {
@@ -56,6 +56,7 @@ router.post("/", checkToken, async (req, res) => {
 
         return res.json({ success: true, msg: status });
     } catch (e) {
+
         return res.json({ success: false, message: e.message })
     }
 
@@ -82,9 +83,23 @@ router.put("/:id", checkToken, async (req, res) => {
         return res.json({ success: true, message: status })
 
     } catch (e) {
+
         return res.json({ success: false, message: e.message })
     }
 
+});
+
+router.delete("/:id", checkToken, async (req, res) => {
+    try {
+        const status = await employeeService.deleteEmployeeFromDataBase(req.params.id)
+
+        if (status === ! "Employee deleted") return res.json({ success: false, message: "Employee Id not found" })
+
+        return res.json({ success: true, message: status })
+    } catch (e) {
+
+        return res.json({ success: false, msg: e.message })
+    }
 
 });
 
