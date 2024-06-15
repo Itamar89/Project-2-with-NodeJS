@@ -14,8 +14,6 @@ const employeeController = require("./Controllers/EmployeesController")
 app.use("/employees", employeeController)
 
 
-
-
 app.listen(8000, () => {
     console.log("Server is running at http://127.0.0.1:8000")
 });
