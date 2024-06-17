@@ -11,6 +11,7 @@ const authController = require("./Controllers/authController")
 app.use("/auth", authController)
 
 const employeeController = require("./Controllers/EmployeesController")
+//http://127.0.0.1:8000/employees/
 app.use("/employees", employeeController)
 
 

@@ -45,6 +45,19 @@ router.get("/", checkToken, async (req, res) => {
     } catch (e) { return res.json({ success: false, message: e.message }) }
 });
 
+// // http://127.0.0.1:8000/employees/FullName
+// // : will assign a variable inside the req.params object with the word that comes after the ":" as the key(fullName), and the value will be the actual value send in the URL
+// router.get("/:fullName", checkToken, async (req, res) => {
+//     const fullName = req.params.FullName
+//     try {
+//         const employee_shiftsList = await employeeService.getEmployeeShifts(fullName)
+//         console.log(fullName);
+//         return res.json({ success: true, employeeShiftsList: employee_shiftsList })
+//     } catch (e) {
+//         return res.json({ success: false, msg: e.message })
+//     }
+// });
+
 //POST - CREAT employee
 router.post("/", checkToken, async (req, res) => {
     try {
